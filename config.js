@@ -27,12 +27,9 @@ module.exports = {
     photo: '/photo.jpg',
     bio: 'Senior Application Developer at Blue Sombrero',
     contacts: {
-      email: '#',
-      telegram: '#',
-      twitter: '#',
-      github: '#',
-      rss: '#',
-      vkontakte: '#'
+      email: 'brandon.jones1985@gmail.com',
+      twitter: 'BrandonJ0nes',
+      github: 'bjonesy'
     }
   }
 };

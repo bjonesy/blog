@@ -7,12 +7,9 @@ import Contacts from './Contacts';
 describe('Contacts', () => {
   const props = {
     contacts: {
-      email: '#',
-      twitter: '#',
-      vkontakte: '#',
-      github: '#',
-      rss: '#',
-      telegram: '#'
+      email: 'brandon.jones1985@gmail.com',
+      twitter: 'BrandonJ0nes',
+      github: 'bjonesy'
     }
   };
 

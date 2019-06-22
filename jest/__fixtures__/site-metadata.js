@@ -28,12 +28,9 @@ module.exports = {
         photo: '/test.jpg',
         bio: 'Test bio',
         contacts: {
-          email: '#',
-          telegram: '#',
-          twitter: '#',
-          github: '#',
-          rss: '#',
-          vkontakte: '#'
+          email: 'brandon.jones195@gmail.com',
+          twitter: 'BrandonJ0nes',
+          github: 'bjonesy'
         }
       }
     }

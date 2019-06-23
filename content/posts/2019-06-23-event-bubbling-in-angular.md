@@ -2,7 +2,7 @@
 template: post
 title: Event Bubbling In Angular
 slug: /posts/event-bubbling-in-angular
-draft: true
+draft: false
 date: 2019-06-23T15:09:24.470Z
 description: >-
   In this post I will share an example of event bubbling in Angular using parent

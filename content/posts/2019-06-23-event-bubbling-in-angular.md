@@ -106,6 +106,7 @@ Let's look at the template for the parent component.
   <div class="page-content">
     <ul class="list">
       <li class="list-item" *ngFor="let item of listItems; let i = index">
+        // Child component
         <app-list-item
           [listItem]="item"
           [index]="i + 1"

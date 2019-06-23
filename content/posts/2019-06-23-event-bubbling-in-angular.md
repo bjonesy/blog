@@ -158,7 +158,7 @@ Now let's look at the template for the parent component.
   </div>
 </div>
 ```
-I've created a list `<ul>` and using the structural directive NgForOf shorthand `ngFor` I iterate through each list item setting a variable for the index. I use my child component as the template for each list item and pass in the data I need. I pass in the index and the list item to the child component. I also attach the `onRemoveListItem` function to the `EventEmitter` in the child component which is `onRemoveListItem`.
+I've created a list `<ul>` and using the structural directive NgForOf shorthand `ngFor` I iterate through each list item setting a variable `i` for the index. I use my child component as the template for each list item and pass in the data I need. I pass in the index and the list item to the child component. I also attach the `onRemoveListItem` function to the `EventEmitter` in the child component which is `onRemoveListItem`.
 
 ```
 <ul class="list">

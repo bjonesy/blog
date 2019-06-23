@@ -18,7 +18,7 @@ In this example I will display a list of items that will contain an index number
 
 The parent component will be responsible for displaying an array of list items and will show a confirmation dialog when the child component list item call to action is clicked. The confirmation dialog will ask the user if they would like to remove the current list item or cancel this action. Once the user clicks on an action in the confirmation dialog, the list item will either be filtered out of the list or the dialog will just close.
 
-**Example:**
+**Example: Parent Component**
 
 ```
 import { Component, HostBinding, OnDestroy } from '@angular/core';

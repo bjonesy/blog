@@ -107,7 +107,7 @@ export class ListItemComponent {
   readonly onRemoveListItem = new EventEmitter<number>();
 }
 ```
-There are two inputs `listItem` which is the list item that is passed down from the parent and the `index` which is the index of the list item that is passed down. There is one output `onRemoveListItem` which is a `EventEmitter` that will emit an event which in this case will be a number. Let's look at the template for the child component.
+There are two inputs `listItem` which are the list item that is passed down from the parent and the `index` which is the index of the list item that is passed down. There is one output `onRemoveListItem` which is a `EventEmitter` that will emit an event which in this case will be a number. Let's look at the template for the child component.
 
 **Example: Child Component HTML**
 

@@ -116,8 +116,19 @@ Let's look at the template for the parent component.
   </div>
 </div>
 ```
-I've created a list and using the shorthand `ngFor` of the NgForOf structural directive I 
+I've created a list `<ul>` and using the structural directive NgForOf shorthand `ngFor` I iterate through each list item setting a variable for the index. I use my child component as the template for each list item and pass in the data I need. I pass in the index and the list item to the child component. I also attach the `onRemoveListItem` function to the `EventEmitter` in the child component which is `onRemoveListItem`.
 
+```
+<ul class="list">
+      <li class="list-item" *ngFor="let item of listItems; let i = index">
+        <app-list-item
+          [listItem]="item"
+          [index]="i + 1"
+          (onRemoveListItem)="onRemoveListItem($event)"
+        ></app-list-item>
+     </li>
+</ul>
+``
 
 The child component will mainly be dumb and will let the parent component dictate what happens based on the user's action. This child component will take in some data from each list item such as the list item index and the list item itself. When the call to action button on this child component is clicked it will emit an event to the parent component. In this example we are emitting the list item id.  
 

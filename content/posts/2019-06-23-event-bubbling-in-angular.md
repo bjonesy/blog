@@ -182,7 +182,7 @@ This will display each list item with a number, a text label and a call to actio
 ></app-list-item>
 ``` 
 
-In the confirmation dialog there is a message and there are two buttons. A message asking the user if they would like to remove the list item.  The two buttons are labeled cancel and yes. If the user clicks cancel the dialog will close and nothing happens. If the user clicks yes the dialog will close and remove the list item that was clicked on from the list. This is all done in the parent component function `onRemoveListItem`.
+In the confirmation dialog there is a message and there are two buttons. A message asking the user if they would like to remove the list item. The two buttons are labeled cancel and yes. If the user clicks cancel the dialog will close and nothing happens the list. If the user clicks yes the dialog will close and remove the list item from the list. This is all done in the parent component function `onRemoveListItem`.
 
 ```
 // When the child component emits and event. User has clicked call to action in the child component

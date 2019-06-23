@@ -16,6 +16,68 @@ In this post I will share an example of event bubbling in Angular using parent a
 
 In this example I will display a list of items that will contain an index number, label and a call to action button.  When the call to action button is clicked it will display a confirmation dialog with actions allowing the user to remove the list item from the list or cancel the current action. 
 
-The parent component will be responsible for displaying an array of list items and will show a confirmation dialog when the list item call to action is clicked.  When the call to action is click it will ask the user if they would like to remove the current list item or cancel this action. Once the user clicks on an action from the confirmation dialog the list item will either be filtered out of the list or the dialog will just close. 
+The parent component will be responsible for displaying an array of list items and will show a confirmation dialog when the child component list item call to action is clicked.  When the call to action is clicked on the child component it will ask the user if they would like to remove the current list item or cancel this action. Once the user clicks on an action from the confirmation dialog, the list item will either be filtered out of the list or the dialog will just close.
+
+```
+import { Component, HostBinding, OnDestroy } from '@angular/core';
+
+import { Observable, of, Subject } from 'rxjs';
+import { switchMap, takeUntil } from 'rxjs/operators';
+
+import { DialogService } from '@app/shared/services';
+
+@Component({
+  selector: 'app-list',
+  templateUrl: './list.component.html',
+  styleUrls: ['./list.component.scss']
+})
+export class ListComponent implements OnDestroy {
+  listItems = [
+    {
+      id: 1,
+      label: 'List item 1'
+    },
+    {
+      id: 2,
+      label: 'List item 2'
+    },
+    {
+      id: 3,
+      label: 'List item 3'
+    },
+    {
+      id: 4,
+      label: 'List item 4'
+    }
+  ];
+
+  @HostBinding('class.list')
+  addComponentClass = true;
+
+  private dispose = new Subject<void>();
+
+  constructor(private dialogService: DialogService) {}
+
+  ngOnDestroy(): void {
+    this.dispose.next();
+    this.dispose.complete();
+  }
+
+  dialogConfirmation(confirmMessage: Observable<string>): Observable<any> {
+    return this.dialogService.confirm(confirmMessage, of(undefined), of('Yes'), of('Cancel'));
+  }
+
+  onRemoveListItem(id: number): void {
+    this.dialogConfirmation(of('Remove list item?'))
+      .pipe(
+        takeUntil(this.dispose),
+        switchMap(() => (this.listItems = this.listItems.filter(x => x.id !== id)))
+      )
+      .subscribe();
+  }
+}
+```
+
+
 
 The child component will take in some data from each list item such as the list item index and the list item.  It will emit an event which will emit  to the parent when the call to action is clicked

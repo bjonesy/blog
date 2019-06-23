@@ -183,4 +183,4 @@ I've created a list `<ul>` and using the structural directive NgForOf shorthand 
         ></app-list-item>
      </li>
 </ul>
-``
+```

@@ -18,7 +18,7 @@ In this example I will display a list of items that will contain an index number
 
 The parent component will be responsible for displaying an array of list items and will show a confirmation dialog when the child component list item call to action is clicked. The confirmation dialog will ask the user if they would like to remove the current list item or cancel this action. Once the user clicks on an action in the confirmation dialog, the list item will either be filtered out of the list or the dialog will just close.
 
-**Example: Parent Component**
+**Example: Parent Component TS**
 
 ```
 import { Component, HostBinding, OnDestroy } from '@angular/core';
@@ -97,7 +97,7 @@ onRemoveListItem(id: number): void {
 ```
 Let's take a look at the child component. The child component will mainly be dumb and will let the parent component dictate what happens based on the user's action. This child component will take in some data from each list item such as the list item index and the list item itself. When the call to action button on this child component is clicked it will emit an event to the parent component. In this example we are emitting the list item id.  
 
-**Example: Child Component**
+**Example: Child Component TS**
 
 ```
 import { Component, EventEmitter, Input, Output } from '@angular/core';
@@ -122,6 +122,8 @@ export class ListItemComponent {
 ```
 There are two inputs `listItem` which is the list item that is passed down from the parent and the `index` which is the index of the list item that is passed down. There is one output `onRemoveListItem` which is a `EventEmitter` that will emit an event which in this case will be a number. Let's look at the template for the child component.
 
+**Example: Child Component HTML**
+
 ```
 <div class="list-item-content">
   <div class="list-item-id">
@@ -144,6 +146,8 @@ There are two inputs `listItem` which is the list item that is passed down from 
 We are using the `index` to display the list item number, using the `listItem.label` to display the text for the list item label and setting a click event on the call to action button `(click)="onRemoveListItem.emit(listItem.id)"` which will emit the `listItem.id`.
 
 Now let's look at the template for the parent component.
+
+**Example: Parent Component HTML**
 
 ```
 <div class="page">

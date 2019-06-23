@@ -12,7 +12,7 @@ category: Angular
 tags:
   - Angular
 ---
-In this post I will share an example of event bubbling in Angular using parent and child component communication. This example is a common use case that is used in the current applications I work on.  
+In this post I will share an example of event bubbling in Angular using parent and child component communication. This example is a common use case used in the current applications I work on.  
 
 In this example I will display a list of items that will contain an index number, label and a call to action button.  When the call to action button is clicked it will display a confirmation dialog with actions allowing the user to remove the list item from the list or cancel the current action. 
 

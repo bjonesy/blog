@@ -83,7 +83,7 @@ export class ListComponent implements OnDestroy {
 I've created an array `listItems` that is just a simple array of items that contains an `id` which is a number and a `label` which is a string. I've also created a function `onRemoveListItem` that takes one parameter which is an `id` that is a number. This function will fire when an event from the child component is emitted. This event is when the user clicks on the call to action button in the child component. The parent component will then show a confirmation dialog asking the user to proceed with another set of actions. Based on the user action from the dialog, the list item will be filtered out or the dialog will just close.
 
 ```
-// When the child component emits and event.  User has clicked call to action in the child component
+// When the child component emits and event. User has clicked call to action in the child component
 onRemoveListItem(id: number): void {
     // Message
     this.dialogConfirmation(of('Remove list item?'))
@@ -96,6 +96,26 @@ onRemoveListItem(id: number): void {
   }
 ```
 
-The child component will mainly be dumb and will let the parent component dictate what happens based on the user's action. This child component will take in some data from each list item such as the list item index and the list item itself. When the call to action button on this child component is clicked it will emit an event to the parent component.  
+Let's look at the template for the parent component.
+
+```
+<div class="page">
+  <div class="page-header">
+    <h2>Event Bubbling Example</h2>
+  </div>
+  <div class="page-content">
+    <ul class="list">
+      <li class="list-item" *ngFor="let item of listItems; let i = index">
+        <app-list-item
+          [listItem]="item"
+          [index]="i + 1"
+          (onRemoveListItem)="onRemoveListItem($event)"
+        ></app-list-item>
+      </li>
+    </ul>
+  </div>
+</div>
+```
+The child component will mainly be dumb and will let the parent component dictate what happens based on the user's action. This child component will take in some data from each list item such as the list item index and the list item itself. When the call to action button on this child component is clicked it will emit an event to the parent component. In this example we are emitting the list item id.  
 
 **Example: Child Component** 

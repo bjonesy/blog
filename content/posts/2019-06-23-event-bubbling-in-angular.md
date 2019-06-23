@@ -6,8 +6,8 @@ draft: false
 date: 2019-06-23T15:09:24.470Z
 description: >-
   In this post I will share an example of event bubbling in Angular using parent
-  and child component communication. This example is a common use case that I
-  come across daily in the current application I work on.
+  and child component communication. This example is a common use case that is
+  used on the current applications I work on.
 category: Angular
 tags:
   - Angular

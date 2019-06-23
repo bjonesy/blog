@@ -2,7 +2,7 @@
 template: post
 title: Event Bubbling In Angular
 slug: /posts/event-bubbling-in-angular
-draft: true
+draft: false
 date: 2019-06-23T15:09:24.470Z
 description: >-
   In this post I will share an example of event bubbling in Angular using parent
@@ -16,7 +16,7 @@ In this post I will share an example of event bubbling in Angular using parent a
 
 In this example I will display a list of items that will contain an index number, label and a call to action button.  When the call to action button is clicked it will display a confirmation dialog with actions allowing the user to remove the list item from the list or cancel the current action. 
 
-The parent component will be responsible for displaying an array of list items and will show a confirmation dialog when the child component list item call to action is clicked. The confirmation dialog will ask the user if they would like to remove the current list item or cancel this action. Once the user clicks on an action in the confirmation dialog, the list item will either be filtered out of the list or the dialog will just close.
+The parent component will be responsible for displaying an array of list items and will show a confirmation dialog when the child component list item call to action button is clicked. The confirmation dialog will ask the user if they would like to remove the current list item or cancel this action. Once the user clicks on an action in the confirmation dialog, the list item will either be filtered out of the list or the dialog will just close.
 
 **Example: Parent Component TS**
 
@@ -80,21 +80,8 @@ export class ListComponent implements OnDestroy {
 }
 ```
 
-I've created an array `listItems` that is just a simple array of items that contains an `id` which is a number and a `label` which is a string. I've also created a function `onRemoveListItem` that takes one parameter which is an `id` that is a number. This function will fire when an event from the child component is emitted. This event is when the user clicks on the call to action button in the child component. The parent component will then show a confirmation dialog asking the user to proceed with another set of actions. Based on the user action from the dialog, the list item will be filtered out or the dialog will just close.
+I've created an array `listItems` that is just a simple array of items that contains an `id` which is a number and a `label` which is a string. I've also created a function `onRemoveListItem` that takes one parameter which is an `id` that is a number. This function will fire when an event from the child component is emitted. This event is triggered from a click event when the user clicks on the call to action button in the child component. The parent component will then show a confirmation dialog asking the user to proceed with another set of actions. Based on the user's action from the dialog, the list item will be filtered out or the dialog will just close.
 
-```
-// When the child component emits and event. User has clicked call to action in the child component
-onRemoveListItem(id: number): void {
-    // Message
-    this.dialogConfirmation(of('Remove list item?'))
-      .pipe(
-        takeUntil(this.dispose),
-        // Action - removing item from the list
-        switchMap(() => (this.listItems = this.listItems.filter(x => x.id !== id)))
-      )
-      .subscribe();
-  }
-```
 Let's take a look at the child component. The child component will mainly be dumb and will let the parent component dictate what happens based on the user's action. This child component will take in some data from each list item such as the list item index and the list item itself. When the call to action button on this child component is clicked it will emit an event to the parent component. In this example we are emitting the list item id.  
 
 **Example: Child Component TS**
@@ -183,4 +170,30 @@ I've created a list `<ul>` and using the structural directive NgForOf shorthand 
         ></app-list-item>
      </li>
 </ul>
-``
+```
+This will display each list item with a number, a text label and a call to action button as mentioned before. When a user clicks the call to action button the `EventEmitter` from the child component will fire which will invoke the `onRemoveListItem` function in the parent. The event will bubble up the `listItem.id` to the parent and will trigger the confirmation dialog to open. 
+
+```
+<app-list-item
+  [listItem]="item"
+  [index]="i + 1"
+  // Output / EventEmitter from child attached to onRemoveListItem function in parent. The $event is the list item id that is bubbled up.
+  (onRemoveListItem)="onRemoveListItem($event)"
+></app-list-item>
+``` 
+
+In the confirmation dialog there is a message and there are two buttons. A message asking the user if they would like to remove the list item.  The two buttons are labeled cancel and yes. If the user clicks cancel the dialog will close and nothing happens. If the user clicks yes the dialog will close and remove the list item that was clicked on from the list. This is all done in the parent component function `onRemoveListItem`.
+
+```
+// When the child component emits and event. User has clicked call to action in the child component
+onRemoveListItem(id: number): void {
+    // Message
+    this.dialogConfirmation(of('Remove list item?'))
+      .pipe(
+        takeUntil(this.dispose),
+        // Action in dialog confirm user clicks Yes removing item from the list
+        switchMap(() => (this.listItems = this.listItems.filter(x => x.id !== id)))
+      )
+      .subscribe();
+  }
+```

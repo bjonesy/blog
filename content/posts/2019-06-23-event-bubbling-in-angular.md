@@ -14,7 +14,7 @@ tags:
 ---
 In this post I will share an example of event bubbling in Angular using parent and child component communication. This example is a common use case that is used in the current applications I work on.  
 
-In this example I will display a list of items that will contain an index number, label and a call to action button, that when clicked, will display a confirmation dialog allowing the user to remove the list item from the list. 
+In this example I will display a list of items that will contain an index number, label and a call to action button.  When the call to action button is clicked it will display a confirmation dialog with actions allowing the user to remove the list item from the list or cancel the current action. 
 
 The parent component will be responsible for displaying an array of list items and will show a confirmation dialog when the list item call to action is clicked.  When the call to action is click it will ask the user if they would like to remove the current list item or cancel this action. Once the user clicks on an action from the confirmation dialog the list item will either be filtered out of the list or the dialog will just close. 
 

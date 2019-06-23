@@ -143,7 +143,7 @@ There are two inputs `listItem` which is the list item that is passed down from 
 ```  
 We are using the `index` to display the list item number, using the `listItem.label` to display the text for the list item label and setting a click event on the call to action button `(click)="onRemoveListItem.emit(listItem.id)"` which will emit the `listItem.id`.
 
-Let's look at the template for the parent component.
+Now let's look at the template for the parent component.
 
 ```
 <div class="page">

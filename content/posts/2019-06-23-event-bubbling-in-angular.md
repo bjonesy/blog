@@ -177,7 +177,7 @@ I've created a list `<ul>` and using the structural directive NgForOf shorthand 
 
 This will display each list item with a number, a text label and a call to action button as mentioned before. When a user clicks the call to action button the `EventEmitter` from the child component will fire which will invoke the `onRemoveListItem` function in the parent. The event will bubble up the `listItem.id` to the parent and will trigger the confirmation dialog to open. 
 
-![List](/media/screen-shot-2019-06-23-at-3.08.20-pm.png "List")
+![A Set of List Items](/media/screen-shot-2019-06-23-at-3.08.20-pm.png "A Set of List Items")
 
 ```
 <app-list-item

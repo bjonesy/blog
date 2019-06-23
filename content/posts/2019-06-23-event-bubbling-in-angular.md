@@ -120,7 +120,28 @@ export class ListItemComponent {
   readonly onRemoveListItem = new EventEmitter<number>();
 }
 ```
-There are two inputs `listItem` which is the list item that is passed down from the parent and the `index` which is the index of the list item that is passed down. There is one output `onRemoveListItem` which is a `EventEmitter` that will emit an event which in this case will be a number.  
+There are two inputs `listItem` which is the list item that is passed down from the parent and the `index` which is the index of the list item that is passed down. There is one output `onRemoveListItem` which is a `EventEmitter` that will emit an event which in this case will be a number. Let's look at the template for the child component.
+
+```
+<div class="list-item-content">
+  <div class="list-item-id">
+    {{ index }}
+  </div>
+  <div class="list-item-label">
+    {{ listItem.label }}
+  </div>
+  <div class="list-item-commands">
+    <button
+      mat-icon-button
+      aria-label="Remove list item"
+      (click)="onRemoveListItem.emit(listItem.id)"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+</div>
+```  
+We are using the `index` to display the list item number, using the `listItem.label` to display the text for the list item label and setting a click event on the call to action button `(click)="onRemoveListItem.emit(listItem.id)"` which will emit the `listItem.id`.
 
 Let's look at the template for the parent component.
 

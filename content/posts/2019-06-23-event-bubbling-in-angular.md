@@ -205,3 +205,4 @@ onRemoveListItem(id: number): void {
       .subscribe();
   }
 ```
+This is just one of the many ways you can use events in Angular. This happens to be one of the most common use cases I come across from day to day when developing.    

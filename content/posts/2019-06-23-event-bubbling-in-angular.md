@@ -95,6 +95,32 @@ onRemoveListItem(id: number): void {
       .subscribe();
   }
 ```
+Let's take a look at the child component. The child component will mainly be dumb and will let the parent component dictate what happens based on the user's action. This child component will take in some data from each list item such as the list item index and the list item itself. When the call to action button on this child component is clicked it will emit an event to the parent component. In this example we are emitting the list item id.  
+
+**Example: Child Component**
+
+```
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+
+import { ListItem } from '@app/pages/models';
+
+@Component({
+  selector: 'app-list-item',
+  templateUrl: './list-item.component.html',
+  styleUrls: ['./list-item.component.scss']
+})
+export class ListItemComponent {
+  @Input()
+  listItem: ListItem;
+
+  @Input()
+  index: number;
+
+  @Output()
+  readonly onRemoveListItem = new EventEmitter<number>();
+}
+```
+There are two inputs `listItem` which is the list item that is passed down from the parent and the `index` which is the index of the list item that is passed down. There is one output `onRemoveListItem` which is a `EventEmitter` that will emit an event which in this case will be a number.  
 
 Let's look at the template for the parent component.
 
@@ -133,7 +159,3 @@ I've created a list `<ul>` and using the structural directive NgForOf shorthand 
      </li>
 </ul>
 ``
-
-The child component will mainly be dumb and will let the parent component dictate what happens based on the user's action. This child component will take in some data from each list item such as the list item index and the list item itself. When the call to action button on this child component is clicked it will emit an event to the parent component. In this example we are emitting the list item id.  
-
-**Example: Child Component** 

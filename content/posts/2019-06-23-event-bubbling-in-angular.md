@@ -116,6 +116,9 @@ Let's look at the template for the parent component.
   </div>
 </div>
 ```
+I've created a list and using the shorthand `ngFor` of the NgForOf structural directive I 
+
+
 The child component will mainly be dumb and will let the parent component dictate what happens based on the user's action. This child component will take in some data from each list item such as the list item index and the list item itself. When the call to action button on this child component is clicked it will emit an event to the parent component. In this example we are emitting the list item id.  
 
 **Example: Child Component** 

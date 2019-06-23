@@ -107,6 +107,9 @@ Let's look at the template for the parent component.
     <ul class="list">
       <li class="list-item" *ngFor="let item of listItems; let i = index">
         // Child component
+        // @Input [listItem] is the list item
+        // @Input [index] is the index which was set to the variable i
+        // Child component EventEmitter is onRemoveListItem which is set the the function onRemoveListItem which captures the $event that is emitted which is the parameter we set in that function 
         <app-list-item
           [listItem]="item"
           [index]="i + 1"

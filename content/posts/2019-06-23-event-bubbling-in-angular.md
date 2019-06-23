@@ -80,6 +80,8 @@ export class ListComponent implements OnDestroy {
 }
 ```
 
-I've created an array `listItems` that is just a simple array of items that contains an `id` which is a number and a `label` which is a string. I've also created a function `onRemoveListItem` that takes one parameter which is a `id` that is a number.    
+I've created an array `listItems` that is just a simple array of items that contains an `id` which is a number and a `label` which is a string. I've also created a function `onRemoveListItem` that takes one parameter which is a `id` that is a number.  We'll come back to our parent component but let's take a look at the child component.
+
+**Example: Child Component**    
 
 The child component will take in some data from each list item such as the list item index and the list item.  It will emit an event which will emit  to the parent when the call to action is clicked

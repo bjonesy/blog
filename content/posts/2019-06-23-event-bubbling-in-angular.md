@@ -78,6 +78,4 @@ export class ListComponent implements OnDestroy {
 }
 ```
 
-
-
 The child component will take in some data from each list item such as the list item index and the list item.  It will emit an event which will emit  to the parent when the call to action is clicked

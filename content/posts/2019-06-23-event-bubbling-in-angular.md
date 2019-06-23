@@ -6,11 +6,12 @@ draft: false
 date: 2019-06-23T15:09:24.470Z
 description: >-
   In this post I will share an example of event bubbling in Angular using parent
-  and child component communication. This example is a common use case that I
-  come across daily in the current application I work on.
+  and child component communication. This example is a common use case that is
+  used on the current applications I work on.
 category: Angular
 tags:
   - Angular
+  - JavaScript
 ---
 In this post I will share an example of event bubbling in Angular using parent and child component communication. This example is a common use case that is used on the current applications I work on.  
 
@@ -82,7 +83,7 @@ export class ListComponent implements OnDestroy {
 
 I've created an array `listItems` that is just a simple array of items that contains an `id` which is a number and a `label` which is a string. I've also created a function `onRemoveListItem` that takes one parameter which is an `id` that is a number. This function will fire when an event from the child component is emitted. This event is triggered from a click event when the user clicks on the call to action button in the child component. The parent component will then show a confirmation dialog asking the user to proceed with another set of actions. Based on the user's action from the dialog, the list item will be filtered out or the dialog will just close.
 
-Let's take a look at the child component. The child component will mainly be dumb and will let the parent component dictate what happens based on the user's action. This child component will take in some data from each list item such as the list item index and the list item itself. When the call to action button on this child component is clicked it will emit an event to the parent component. In this example we are emitting the list item id.  
+Let's take a look at the child component. The child component will be a dumb component and will let the parent component dictate what happens based on the user's action. This child component will take in some data from each list item such as the list item index and the list item itself. When the call to action button on this child component is clicked it will emit an event to the parent component. In this example we are emitting the list item id.  
 
 **Example: Child Component TS**
 
@@ -107,7 +108,8 @@ export class ListItemComponent {
   readonly onRemoveListItem = new EventEmitter<number>();
 }
 ```
-There are two inputs `listItem` which is the list item that is passed down from the parent and the `index` which is the index of the list item that is passed down. There is one output `onRemoveListItem` which is a `EventEmitter` that will emit an event which in this case will be a number. Let's look at the template for the child component.
+
+There are two inputs `listItem` which are the list item that is passed down from the parent and the `index` which is the index number of the list item that is passed down. There is one output `onRemoveListItem` which is a `EventEmitter` that will emit an event which in this case will be a number. Let's look at the template for the child component.
 
 **Example: Child Component HTML**
 
@@ -129,7 +131,8 @@ There are two inputs `listItem` which is the list item that is passed down from 
     </button>
   </div>
 </div>
-```  
+```
+
 We are using the `index` to display the list item number, using the `listItem.label` to display the text for the list item label and setting a click event on the call to action button `(click)="onRemoveListItem.emit(listItem.id)"` which will emit the `listItem.id`.
 
 Now let's look at the template for the parent component.
@@ -158,7 +161,8 @@ Now let's look at the template for the parent component.
   </div>
 </div>
 ```
-I've created a list `<ul>` and using the structural directive NgForOf shorthand `ngFor` I iterate through each list item setting a variable for the index. I use my child component as the template for each list item and pass in the data I need. I pass in the index and the list item to the child component. I also attach the `onRemoveListItem` function to the `EventEmitter` in the child component which is `onRemoveListItem`.
+
+I've created a list `<ul>` and using the structural directive NgForOf shorthand `ngFor` I iterate through each list item setting a variable `i` for the index. I use my child component as the template for each list item and pass in the data I need. I pass in the index and the list item to the child component. I also attach the `onRemoveListItem` function to the `EventEmitter` in the child component which is `onRemoveListItem`.
 
 ```
 <ul class="list">
@@ -171,7 +175,10 @@ I've created a list `<ul>` and using the structural directive NgForOf shorthand 
      </li>
 </ul>
 ```
+
 This will display each list item with a number, a text label and a call to action button as mentioned before. When a user clicks the call to action button the `EventEmitter` from the child component will fire which will invoke the `onRemoveListItem` function in the parent. The event will bubble up the `listItem.id` to the parent and will trigger the confirmation dialog to open. 
+
+![A Set of List Items](/media/screen-shot-2019-06-23-at-3.08.20-pm.png "A Set of List Items")
 
 ```
 <app-list-item
@@ -180,9 +187,11 @@ This will display each list item with a number, a text label and a call to actio
   // Output / EventEmitter from child attached to onRemoveListItem function in parent. The $event is the list item id that is bubbled up.
   (onRemoveListItem)="onRemoveListItem($event)"
 ></app-list-item>
-``` 
+```
 
-In the confirmation dialog there is a message and there are two buttons. A message asking the user if they would like to remove the list item.  The two buttons are labeled cancel and yes. If the user clicks cancel the dialog will close and nothing happens. If the user clicks yes the dialog will close and remove the list item that was clicked on from the list. This is all done in the parent component function `onRemoveListItem`.
+In the confirmation dialog there is a message and there are two buttons. A message asking the user if they would like to remove the list item. The two buttons are labeled cancel and yes. If the user clicks cancel the dialog will close and nothing happens the list. If the user clicks yes the dialog will close and remove the list item from the list. This is all done in the parent component function `onRemoveListItem`.
+
+![Confirmation Dialog Example](/media/screen-shot-2019-06-23-at-3.08.32-pm.png "Confirmation Dialog Example")
 
 ```
 // When the child component emits and event. User has clicked call to action in the child component
@@ -197,3 +206,6 @@ onRemoveListItem(id: number): void {
       .subscribe();
   }
 ```
+This is just one of the many ways you can use events in Angular. This happens to be one of the most common use cases I come across from day to day when developing.
+
+[Working example GitHub repo](https://github.com/bjonesy/event-handling-examples)    

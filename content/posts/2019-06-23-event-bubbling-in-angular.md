@@ -107,6 +107,7 @@ export class ListItemComponent {
   readonly onRemoveListItem = new EventEmitter<number>();
 }
 ```
+
 There are two inputs `listItem` which are the list item that is passed down from the parent and the `index` which is the index number of the list item that is passed down. There is one output `onRemoveListItem` which is a `EventEmitter` that will emit an event which in this case will be a number. Let's look at the template for the child component.
 
 **Example: Child Component HTML**
@@ -129,7 +130,8 @@ There are two inputs `listItem` which are the list item that is passed down from
     </button>
   </div>
 </div>
-```  
+```
+
 We are using the `index` to display the list item number, using the `listItem.label` to display the text for the list item label and setting a click event on the call to action button `(click)="onRemoveListItem.emit(listItem.id)"` which will emit the `listItem.id`.
 
 Now let's look at the template for the parent component.
@@ -158,6 +160,7 @@ Now let's look at the template for the parent component.
   </div>
 </div>
 ```
+
 I've created a list `<ul>` and using the structural directive NgForOf shorthand `ngFor` I iterate through each list item setting a variable `i` for the index. I use my child component as the template for each list item and pass in the data I need. I pass in the index and the list item to the child component. I also attach the `onRemoveListItem` function to the `EventEmitter` in the child component which is `onRemoveListItem`.
 
 ```
@@ -171,7 +174,10 @@ I've created a list `<ul>` and using the structural directive NgForOf shorthand 
      </li>
 </ul>
 ```
+
 This will display each list item with a number, a text label and a call to action button as mentioned before. When a user clicks the call to action button the `EventEmitter` from the child component will fire which will invoke the `onRemoveListItem` function in the parent. The event will bubble up the `listItem.id` to the parent and will trigger the confirmation dialog to open. 
+
+![List](/media/screen-shot-2019-06-23-at-3.08.20-pm.png "List")
 
 ```
 <app-list-item
@@ -180,9 +186,11 @@ This will display each list item with a number, a text label and a call to actio
   // Output / EventEmitter from child attached to onRemoveListItem function in parent. The $event is the list item id that is bubbled up.
   (onRemoveListItem)="onRemoveListItem($event)"
 ></app-list-item>
-``` 
+```
 
 In the confirmation dialog there is a message and there are two buttons. A message asking the user if they would like to remove the list item. The two buttons are labeled cancel and yes. If the user clicks cancel the dialog will close and nothing happens the list. If the user clicks yes the dialog will close and remove the list item from the list. This is all done in the parent component function `onRemoveListItem`.
+
+![Confirmation Dialog Example](/media/screen-shot-2019-06-23-at-3.08.32-pm.png "Confirmation Dialog Example")
 
 ```
 // When the child component emits and event. User has clicked call to action in the child component

@@ -10,7 +10,8 @@ description: >-
   used on the current applications I work on.
 category: Angular
 tags:
-  - Angular
+  - angular
+  - javascript
 ---
 In this post I will share an example of event bubbling in Angular using parent and child component communication. This example is a common use case that is used on the current applications I work on.  
 

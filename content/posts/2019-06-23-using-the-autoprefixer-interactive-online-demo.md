@@ -16,6 +16,6 @@ tags:
 ---
 If you have used any of the modern frameworks like Angular or React you might be familiar with the PostCSS plugin Autoprefixer. It is a great plugin that will use data based on current browser popularity and property support to apply vendor prefixes to your styles for you. This can be a big help if you use something like CSS grid to allow your CSS grid styles to fallback in older browsers like Internet Explorer.
 
-But what if you are in a situation where you need to manually do this or you are working on a project where you are unable to use this plugin. I came across this situation recently and did not know that the Autoprefixer plugin has an interactive online demo page that I could use to help me [Autoprefixer online demo](https://autoprefixer.github.io/). 
+But what if you are in a situation where you need to manually do this or you are working on a project where you are unable to use this plugin. I came across this situation recently and did not know that the Autoprefixer plugin has an interactive online demo page that I could use to help me. [Autoprefixer online demo](https://autoprefixer.github.io/). 
 
 In my situation this online interactive demo was very helpful and helped me correctly update my styles to include the correct vendor prefixes.

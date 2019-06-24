@@ -1,19 +1,19 @@
 ---
 template: post
-title: Event Bubbling In Angular
-slug: /posts/event-bubbling-in-angular
+title: Event Delegation In Angular
+slug: /posts/event-delegation-in-angular
 draft: false
 date: 2019-06-23T15:09:24.470Z
 description: >-
-  In this post I will share an example of event bubbling in Angular using parent
-  and child component communication. This example is a common use case that is
-  used on the current applications I work on.
+  In this post I will share an example of event delegation in Angular using
+  parent and child component communication. This example is a common use case
+  that is used on the current applications I work on.
 category: Angular
 tags:
   - Angular
   - JavaScript
 ---
-In this post I will share an example of event bubbling in Angular using parent and child component communication. This example is a common use case that is used on the current applications I work on.  
+In this post I will share an example of event delegation in Angular using parent and child component communication. This example is a common use case that is used on the current applications I work on.  
 
 In this example I will display a list of items that will contain an index number, label and a call to action button.  When the call to action button is clicked it will display a confirmation dialog with actions allowing the user to remove the list item from the list or cancel the current action. 
 
